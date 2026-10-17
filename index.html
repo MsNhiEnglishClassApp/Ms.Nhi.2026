@@ -817,7 +817,7 @@
                 const liveCorrectCount = computed(() => liveSession.value.submissions.filter(s => s.isCorrect).length);
                 const liveWrongCount = computed(() => liveSession.value.submissions.filter(s => !s.isCorrect).length);
 
-                const handleMultipleStudentAnswer = (conn, studentName, studentAns) => {
+               const handleMultipleStudentAnswer = (conn, studentName, studentAns) => {
                     if (liveSession.value.isFinished || liveCorrectCount.value >= liveSession.value.targetCorrectAnswers || liveSession.value.timeLeft <= 0) {
                         conn.send({ type: 'RESULT', status: 'limit_reached' }); return;
                     }
@@ -827,11 +827,56 @@
 
                     const ansStudentClean = studentAns.trim().toLowerCase();
                     const ansTeacherClean = liveSession.value.correctAnswer.trim().toLowerCase();
-                    const isCorrect = (ansStudentClean === ansTeacherClean);
+                    
+                    // --- THUẬT TOÁN CHẤM ĐIỂM THÔNG MINH ---
+                    // Hàm bóc tách chữ cái đáp án (A, B, C, D) và phần nội dung
+                    const getOptionDetail = (text) => {
+                        const match = text.match(/^([a-d])[\.\:\)]?\s*(.*)$/i);
+                        return match ? { letter: match[1], content: match[2].trim() } : { letter: null, content: text.trim() };
+                    };
+
+                    const tAns = getOptionDetail(ansTeacherClean);
+                    const sAns = getOptionDetail(ansStudentClean);
+
+                    let isCorrect = false;
+
+                    // Trường hợp 1: Giống nhau hoàn toàn (VD: Cả hai đều nhập "Apple")
+                    if (ansStudentClean === ansTeacherClean) {
+                        isCorrect = true;
+                    } 
+                    // Trường hợp 2: Khớp phần nội dung text (VD: GV là "A. Apple", HS là "Apple" hoặc "B. Apple")
+                    else if (tAns.content && sAns.content && tAns.content === sAns.content) {
+                        isCorrect = true;
+                    } 
+                    // Trường hợp 3: GV nhập cả câu (VD: "A. Apple"), HS chỉ nhập chữ cái (VD: "A", "A.", "A)")
+                    else if (tAns.letter && (ansStudentClean === tAns.letter || ansStudentClean === tAns.letter + '.' || ansStudentClean === tAns.letter + ')')) {
+                        isCorrect = true;
+                    } 
+                    // Trường hợp 4: GV chỉ nhập chữ cái "A", HS nhập nguyên câu "A. Apple"
+                    else if (ansTeacherClean.length <= 2 && tAns.letter && tAns.letter === sAns.letter) {
+                        isCorrect = true;
+                    }
+                    // ---------------------------------------
+
                     const now = new Date();
                     const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
 
                     liveSession.value.submissions.unshift({ student: studentName, answer: studentAns, isCorrect: isCorrect, time: timeStr });
+                    
+                    conn.send({ type: 'RESULT', status: isCorrect ? 'correct' : 'wrong' });
+
+                    records.value.push({
+                        id: Date.now(), className: liveSession.value.class, student: studentName, date: form.value.date, semester: form.value.semester, week: form.value.week,
+                        criteriaPlus: { phatBieu: false, lamBaiTap: false, nhanXetDung: false, traLoiDung: isCorrect }, criteriaMinus: { khongLamBai: false, khongChuY: !isCorrect },
+                        plusTicks: isCorrect ? 1 : 0, minusTicks: isCorrect ? 0 : 1, 
+                        comment: "[Nộp ĐT] Câu: \"" + liveSession.value.question + "\" - ĐA: \"" + studentAns + "\" -> " + (isCorrect ? 'ĐÚNG' : 'SAI (Chuẩn: ' + liveSession.value.correctAnswer + ')')
+                    });
+
+                    if (isCorrect && liveCorrectCount.value >= liveSession.value.targetCorrectAnswers) {
+                        liveSession.value.isFinished = true;
+                        if(liveSession.value.timerInterval) clearInterval(liveSession.value.timerInterval);
+                    }
+                };
                     
                     // CHÚ Ý: Bỏ không gửi `correctAnswer` về học sinh nữa (Để chống học sinh nhìn bài)
                     conn.send({ type: 'RESULT', status: isCorrect ? 'correct' : 'wrong' });
