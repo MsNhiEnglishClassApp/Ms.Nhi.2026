@@ -735,10 +735,10 @@
                         
                         // Mô phỏng AI sinh ra các mẫu câu hỏi tương đương chủ đề
                         const mockAiGenerations = [
-                            {q: `AI Generated (${unit}): They are discussing the _____ problems of the city. (A. environment / B. environmental)`, a: "environmental"},
-                            {q: `AI Generated (${unit}): Fill in: We need to p______ the forests from being destroyed.`, a: "protect"},
-                            {q: `AI Generated (${unit}): Reorder: should / We / recycle / paper / everyday.`, a: "We should recycle paper everyday."},
-                            {q: `AI Generated (${unit}): The teacher _____ (explain) the lesson right now.`, a: "is explaining"}
+                            {q: `They are discussing the _____ problems of the city. (A. environment / B. environmental)`, a: "environmental"},
+                            {q: `Fill in: We need to p______ the forests from being destroyed.`, a: "protect"},
+                            {q: `Reorder: should / We / recycle / paper / everyday.`, a: "We should recycle paper everyday."},
+                            {q: `The teacher _____ (explain) the lesson right now.`, a: "is explaining"}
                         ];
                         
                         const randomQuestion = mockAiGenerations[Math.floor(Math.random() * mockAiGenerations.length)];
