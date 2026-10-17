@@ -27,7 +27,7 @@
             <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden text-center p-6 md:p-8 relative">
                 <i class="fas fa-graduation-cap text-5xl text-indigo-600 mb-3"></i>
                 <h2 class="text-xl font-black text-gray-800 uppercase tracking-wide">THPT NGUYỄN SINH SẮC</h2>
-                <p class="text-xs font-bold text-indigo-600 mb-4 pb-2 border-b">BỘ MÔN TIẾNG ANH - CÔ NHI</p>
+                <p class="text-xs font-bold text-indigo-600 mb-4 pb-2 border-b">BỘ MÔN TIẾNG ANH - MS.NHI</p>
                 
                 <div v-if="studentState.status === 'connecting'" class="py-10">
                     <i class="fas fa-spinner fa-spin text-5xl text-indigo-500 mb-4"></i>
@@ -65,7 +65,7 @@
 
                 <div v-if="studentState.status === 'submitting'" class="py-10">
                     <i class="fas fa-paper-plane fa-bounce text-5xl text-indigo-500 mb-4"></i>
-                    <p class="font-bold text-gray-700 text-lg">Đang chuyển bài nộp về máy cô Nhi...</p>
+                    <p class="font-bold text-gray-700 text-lg">Đang chuyển bài nộp về máy Ms.Nhi...</p>
                 </div>
 
                 <div v-if="studentState.status === 'correct'" class="py-8 animate-fade-in">
@@ -95,7 +95,7 @@
                 <div v-if="studentState.status === 'limit_reached'" class="py-8 animate-fade-in">
                     <i class="fas fa-stopwatch text-6xl text-amber-500 mb-3"></i>
                     <h3 class="text-xl font-black text-amber-600 mb-2">ĐÃ CHỐT SỔ HOẶC HẾT GIỜ!</h3>
-                    <p class="text-gray-600 text-sm mb-4">Cô Nhi đã chốt danh sách hoặc thời gian làm bài đã kết thúc. Hẹn em ở câu hỏi tiếp theo nhé!</p>
+                    <p class="text-gray-600 text-sm mb-4">Ms.Nhi đã chốt danh sách hoặc thời gian làm bài đã kết thúc. Hẹn em ở câu hỏi tiếp theo nhé!</p>
                 </div>
 
                 <div v-if="studentState.status === 'error'" class="py-8 animate-fade-in">
@@ -341,7 +341,7 @@
 
                     <div class="border rounded-xl overflow-hidden shadow-sm">
                         <div class="bg-slate-800 text-white px-5 py-3 font-bold flex justify-between items-center">
-                            <span><i class="fas fa-list-check mr-2"></i> Bảng Vàng Sinh Viên (Thời gian thực)</span>
+                            <span><i class="fas fa-list-check mr-2"></i> BẢNG GHI NHẬN THÀNH TÍCH (Thời gian thực)</span>
                             <span class="text-sm font-normal text-gray-300">Đúng: <strong class="text-emerald-400">{{ liveCorrectCount }}</strong> | Sai: <strong class="text-rose-400">{{ liveWrongCount }}</strong></span>
                         </div>
                         <table class="min-w-full bg-white">
@@ -817,7 +817,7 @@
                 const liveCorrectCount = computed(() => liveSession.value.submissions.filter(s => s.isCorrect).length);
                 const liveWrongCount = computed(() => liveSession.value.submissions.filter(s => !s.isCorrect).length);
 
-               const handleMultipleStudentAnswer = (conn, studentName, studentAns) => {
+                const handleMultipleStudentAnswer = (conn, studentName, studentAns) => {
                     if (liveSession.value.isFinished || liveCorrectCount.value >= liveSession.value.targetCorrectAnswers || liveSession.value.timeLeft <= 0) {
                         conn.send({ type: 'RESULT', status: 'limit_reached' }); return;
                     }
@@ -840,19 +840,19 @@
 
                     let isCorrect = false;
 
-                    // Trường hợp 1: Giống nhau hoàn toàn (VD: Cả hai đều nhập "Apple")
+                    // Trường hợp 1: Giống nhau hoàn toàn
                     if (ansStudentClean === ansTeacherClean) {
                         isCorrect = true;
                     } 
-                    // Trường hợp 2: Khớp phần nội dung text (VD: GV là "A. Apple", HS là "Apple" hoặc "B. Apple")
+                    // Trường hợp 2: Khớp phần nội dung text
                     else if (tAns.content && sAns.content && tAns.content === sAns.content) {
                         isCorrect = true;
                     } 
-                    // Trường hợp 3: GV nhập cả câu (VD: "A. Apple"), HS chỉ nhập chữ cái (VD: "A", "A.", "A)")
+                    // Trường hợp 3: GV nhập cả câu, HS chỉ nhập chữ cái
                     else if (tAns.letter && (ansStudentClean === tAns.letter || ansStudentClean === tAns.letter + '.' || ansStudentClean === tAns.letter + ')')) {
                         isCorrect = true;
                     } 
-                    // Trường hợp 4: GV chỉ nhập chữ cái "A", HS nhập nguyên câu "A. Apple"
+                    // Trường hợp 4: GV chỉ nhập chữ cái, HS nhập nguyên câu
                     else if (ansTeacherClean.length <= 2 && tAns.letter && tAns.letter === sAns.letter) {
                         isCorrect = true;
                     }
@@ -863,22 +863,7 @@
 
                     liveSession.value.submissions.unshift({ student: studentName, answer: studentAns, isCorrect: isCorrect, time: timeStr });
                     
-                    conn.send({ type: 'RESULT', status: isCorrect ? 'correct' : 'wrong' });
-
-                    records.value.push({
-                        id: Date.now(), className: liveSession.value.class, student: studentName, date: form.value.date, semester: form.value.semester, week: form.value.week,
-                        criteriaPlus: { phatBieu: false, lamBaiTap: false, nhanXetDung: false, traLoiDung: isCorrect }, criteriaMinus: { khongLamBai: false, khongChuY: !isCorrect },
-                        plusTicks: isCorrect ? 1 : 0, minusTicks: isCorrect ? 0 : 1, 
-                        comment: "[Nộp ĐT] Câu: \"" + liveSession.value.question + "\" - ĐA: \"" + studentAns + "\" -> " + (isCorrect ? 'ĐÚNG' : 'SAI (Chuẩn: ' + liveSession.value.correctAnswer + ')')
-                    });
-
-                    if (isCorrect && liveCorrectCount.value >= liveSession.value.targetCorrectAnswers) {
-                        liveSession.value.isFinished = true;
-                        if(liveSession.value.timerInterval) clearInterval(liveSession.value.timerInterval);
-                    }
-                };
-                    
-                    // CHÚ Ý: Bỏ không gửi `correctAnswer` về học sinh nữa (Để chống học sinh nhìn bài)
+                    // Gửi kết quả về
                     conn.send({ type: 'RESULT', status: isCorrect ? 'correct' : 'wrong' });
 
                     records.value.push({
