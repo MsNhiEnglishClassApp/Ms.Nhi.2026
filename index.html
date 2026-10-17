@@ -827,34 +827,56 @@
 
                     const ansStudentClean = studentAns.trim().toLowerCase();
                     const ansTeacherClean = liveSession.value.correctAnswer.trim().toLowerCase();
+                    const questionText = liveSession.value.question.toLowerCase();
                     
-                    // --- THUẬT TOÁN CHẤM ĐIỂM THÔNG MINH ---
-                    // Hàm bóc tách chữ cái đáp án (A, B, C, D) và phần nội dung
+                    // --- THUẬT TOÁN CHẤM ĐIỂM NÂNG CẤP (Bao gồm đọc Option từ Câu Hỏi) ---
+                    // Bước 1: Trích xuất các lựa chọn từ nội dung câu hỏi (VD: A. put / B. take)
+                    const optionsMap = {};
+                    // Regex quét lấy nhóm chữ cái và nội dung, dừng lại khi gặp dấu /, dấu ,, hoặc đóng ngoặc
+                    const optionRegex = /([a-d])[\.\:\)]\s*([^,;/\)]+)/gi;
+                    let match;
+                    while ((match = optionRegex.exec(questionText)) !== null) {
+                        optionsMap[match[1].toLowerCase()] = match[2].trim();
+                    }
+
+                    // Bước 2: Bóc tách phần chữ cái và phần nội dung của câu trả lời
                     const getOptionDetail = (text) => {
-                        const match = text.match(/^([a-d])[\.\:\)]?\s*(.*)$/i);
-                        return match ? { letter: match[1], content: match[2].trim() } : { letter: null, content: text.trim() };
+                        const m = text.match(/^([a-d])[\.\:\)]?\s*(.*)$/i);
+                        return m ? { letter: m[1].toLowerCase(), content: m[2].trim() } : { letter: null, content: text.trim() };
+                    };
+
+                    const resolveAnswer = (ansObj) => {
+                        let res = { letter: ansObj.letter, content: ansObj.content };
+                        // Nếu chỉ có chữ cái, cố gắng tìm nội dung từ câu hỏi
+                        if (res.letter && !res.content && optionsMap[res.letter]) {
+                            res.content = optionsMap[res.letter];
+                        }
+                        // Nếu chỉ có nội dung, cố gắng tìm chữ cái từ câu hỏi
+                        if (res.content && !res.letter) {
+                            for (const [key, val] of Object.entries(optionsMap)) {
+                                if (val === res.content) {
+                                    res.letter = key;
+                                    break;
+                                }
+                            }
+                        }
+                        return res;
                     };
 
                     const tAns = getOptionDetail(ansTeacherClean);
                     const sAns = getOptionDetail(ansStudentClean);
 
+                    const resolvedTeacher = resolveAnswer(tAns);
+                    const resolvedStudent = resolveAnswer(sAns);
+
                     let isCorrect = false;
 
-                    // Trường hợp 1: Giống nhau hoàn toàn
                     if (ansStudentClean === ansTeacherClean) {
-                        isCorrect = true;
-                    } 
-                    // Trường hợp 2: Khớp phần nội dung text
-                    else if (tAns.content && sAns.content && tAns.content === sAns.content) {
-                        isCorrect = true;
-                    } 
-                    // Trường hợp 3: GV nhập cả câu, HS chỉ nhập chữ cái
-                    else if (tAns.letter && (ansStudentClean === tAns.letter || ansStudentClean === tAns.letter + '.' || ansStudentClean === tAns.letter + ')')) {
-                        isCorrect = true;
-                    } 
-                    // Trường hợp 4: GV chỉ nhập chữ cái, HS nhập nguyên câu
-                    else if (ansTeacherClean.length <= 2 && tAns.letter && tAns.letter === sAns.letter) {
-                        isCorrect = true;
+                        isCorrect = true; // Trùng khớp 100%
+                    } else if (resolvedTeacher.letter && resolvedStudent.letter && resolvedTeacher.letter === resolvedStudent.letter) {
+                        isCorrect = true; // Khớp phần chữ cái (VD: c === c)
+                    } else if (resolvedTeacher.content && resolvedStudent.content && resolvedTeacher.content === resolvedStudent.content) {
+                        isCorrect = true; // Khớp phần nội dung (VD: turn === turn)
                     }
                     // ---------------------------------------
 
@@ -863,7 +885,6 @@
 
                     liveSession.value.submissions.unshift({ student: studentName, answer: studentAns, isCorrect: isCorrect, time: timeStr });
                     
-                    // Gửi kết quả về
                     conn.send({ type: 'RESULT', status: isCorrect ? 'correct' : 'wrong' });
 
                     records.value.push({
