@@ -723,19 +723,253 @@
                     if (weekNum == 27) return "Review 3"; if (weekNum <= 30) return "Unit 9"; if (weekNum <= 32) return "Unit 10"; return "Review Term 2";
                 };
 
-                // Ngân hàng câu hỏi đầy đủ từ dữ liệu gốc
+                // =========================================================================
+                // BẮT ĐẦU: NGÂN HÀNG CÂU HỎI (FULL 10 UNITS KHỐI 10 & KHỐI 11)
+                // =========================================================================
                 const dbQuestions = reactive({
                     10: {
-                        "Unit 1": [ {q: "Fill in: My mother is a h_____ and she does all the chores.", a: "homemaker"}, {q: "Fill in: We divide household chores e_____. Everyone does their share.", a: "equally"}, {q: "Multiple choice: I usually _____ the washing-up after dinner. (A. make / B. do / C. take)", a: "do"}, {q: "Grammar: He (play) _____ football at the moment.", a: "is playing"}, {q: "Grammar: Water (boil) _____ at 100 degrees Celsius.", a: "boils"}, {q: "Reorder: heavy / My / does / lifting / father / the / always.", a: "My father always does the heavy lifting."}, {q: "Find error: She is always wash the dishes in the evening.", a: "wash"}, {q: "Fill in: Doing chores helps children learn life s____.", a: "skills"}, {q: "Translate to English: Trách nhiệm gia đình.", a: "family responsibility"}, {q: "Multiple choice: My sister is responsible _____ cooking. (A. of / B. for / C. at)", a: "for"} ],
-                        "Unit 2": [ {q: "Fill in: We should adopt a g_____ lifestyle to save the planet.", a: "green"}, {q: "Fill in: Reducing your carbon f_____ is essential.", a: "footprint"}, {q: "Multiple choice: Please _____ off the lights. (A. put / B. take / C. turn)", a: "turn"}, {q: "Grammar (Passive): People plant many trees. -> Many trees _____.", a: "are planted"}, {q: "Fill in: We should use e___-friendly products.", a: "eco"}, {q: "Reorder: pollution / environment / Plastic / the / damages.", a: "Plastic pollution damages the environment."}, {q: "Find error: The room is clean by my sister every day.", a: "clean"}, {q: "Multiple choice: We should sort our daily _____. (A. litter / B. awareness / C. issue)", a: "litter"}, {q: "Fill in: Public transport helps reduce gas e_____.", a: "emissions"}, {q: "Fill in: You should _____ away from single-use plastics. (stay/keep/move)", a: "stay"}, {q: "Grammar (Passive): They built this house in 1990. -> This house _____ in 1990.", a: "was built"}, {q: "Multiple choice: Air pollution causes many _____ problems. (A. health / B. healthy / C. heal)", a: "health"}, {q: "Fill in: Solar energy is a type of r_____ energy.", a: "renewable"}, {q: "Translate to English: Năng lượng gió.", a: "wind energy"}, {q: "Reorder: plastic / Use / bags / less / please.", a: "Use less plastic bags please."}, {q: "Find error: The trees was planted yesterday.", a: "was"}, {q: "Fill in: Water p_____ is a serious issue in this river.", a: "pollution"}, {q: "Multiple choice: Deforestation leads _____ global warming. (A. to / B. at / C. from)", a: "to"}, {q: "Grammar (Passive): They are painting the school. -> The school _____.", a: "is being painted"}, {q: "Fill in: We need to raise people's a_____ of saving the environment.", a: "awareness"} ],
-                        "Unit 3 & Review 1": [ {q: "Fill in: He plays the piano very b_____.", a: "beautifully"}, {q: "Grammar: We let him _____ (go) out.", a: "go"}, {q: "Multiple choice: She decided _____ (A. taking / B. to take) the job.", a: "to take"}, {q: "Reorder: pop / listening / I / to / love / music.", a: "I love listening to pop music."}, {q: "Fill in: Son Tung M-TP is a famous p___ singer.", a: "pop"} ],
-                        "Unit 4": [ {q: "Fill in: We are looking for v_____ for the summer camp.", a: "volunteers"}, {q: "Multiple choice: The movie was very _____. (A. bored / B. boring)", a: "boring"}, {q: "Grammar: I am (interest) _____ in community service.", a: "interested"}, {q: "Reorder: community / We / local / our / help / should.", a: "We should help our local community."}, {q: "Fill in: Donating blood is a m_____ activity.", a: "meaningful"} ]
+                        "Unit 1": [
+                            {q: "Translate to Vietnamese: heavy lifting", a: "mang vác nặng"}, {q: "Translate to English: trách nhiệm gia đình", a: "family responsibility"},
+                            {q: "Multiple choice: She usually _____ the shopping. (A. does / B. makes / C. takes / D. gets)", a: "A"}, {q: "Fill in (<= 3 words): My mother is a h_____. She manages our home.", a: "homemaker"},
+                            {q: "True/False: The present continuous tense is used to describe a daily routine. (True/False)", a: "False"}, {q: "Reorder: is / dinner / cooking / Mom / now.", a: "Mom is cooking dinner now."},
+                            {q: "Multiple choice: I _____ for my math exam at the moment. (A. study / B. am studying / C. studies / D. studied)", a: "B"}, {q: "Translate to Vietnamese: laundry", a: "giặt giũ"},
+                            {q: "Translate to English: đổ rác (3 words)", a: "put out the rubbish"}, {q: "Fill in (<= 3 words): Everyone should share household c_____.", a: "chores"},
+                            {q: "True/False: 'Breadwinner' means the person who earns money for the family. (True/False)", a: "True"}, {q: "Reorder: always / does / the / My / washing-up. / sister", a: "My sister always does the washing-up."},
+                            {q: "Multiple choice: We divide household chores _____. (A. equal / B. equally / C. equality / D. equals)", a: "B"}, {q: "Grammar: Look! The children (play) _____ in the yard.", a: "are playing"},
+                            {q: "Translate to English: người nội trợ", a: "homemaker"}, {q: "Translate to Vietnamese: financial burden", a: "gánh nặng tài chính"},
+                            {q: "True/False: 'She cooks dinner every day' uses the Present Simple tense. (True/False)", a: "True"}, {q: "Reorder: doing / hate / I / the / ironing.", a: "I hate doing the ironing."},
+                            {q: "Multiple choice: Who is responsible _____ the finances? (A. to / B. at / C. for / D. on)", a: "C"}, {q: "Fill in (<= 3 words): We divide chores equally in the f_____.", a: "family"}
+                        ],
+                        "Unit 2": [
+                            {q: "Translate to Vietnamese: carbon footprint", a: "dấu chân carbon"}, {q: "Translate to English: thân thiện với môi trường", a: "eco-friendly"},
+                            {q: "Multiple choice: We should _____ off appliances when not in use. (A. put / B. turn / C. take / D. get)", a: "B"}, {q: "Fill in (<= 3 words): Reduce, reuse, and r_____.", a: "recycle"},
+                            {q: "True/False: Deforestation helps protect the environment. (True/False)", a: "False"}, {q: "Reorder: public / Use / transport / more.", a: "Use public transport more."},
+                            {q: "Grammar (Passive): Trees _____ to improve air quality. (A. plant / B. are planted / C. is planted / D. planted)", a: "B"}, {q: "Translate to Vietnamese: renewable energy", a: "năng lượng tái tạo"},
+                            {q: "Translate to English: năng lượng mặt trời", a: "solar energy"}, {q: "Fill in (<= 3 words): Plastic bags take years to d_____.", a: "decompose"},
+                            {q: "True/False: Solar and wind power are renewable energy sources. (True/False)", a: "True"}, {q: "Reorder: pollution / causes / warming / Global.", a: "Pollution causes global warming."},
+                            {q: "Multiple choice: The Earth is getting _____. (A. warm / B. warmer / C. warmest / D. warmly)", a: "B"}, {q: "Grammar (Passive): The house (clean) _____ every day.", a: "is cleaned"},
+                            {q: "Translate to English: bảo vệ môi trường", a: "protect the environment"}, {q: "Translate to Vietnamese: single-use products", a: "sản phẩm dùng một lần"},
+                            {q: "True/False: In passive voice, the object of the active sentence becomes the subject. (True/False)", a: "True"}, {q: "Reorder: away / Don't / throw / rubbish.", a: "Don't throw away rubbish."},
+                            {q: "Multiple choice: We are responsible _____ keeping the city clean. (A. in / B. for / C. at / D. with)", a: "B"}, {q: "Fill in (<= 3 words): We must protect endangered s_____.", a: "species"}
+                        ],
+                        "Unit 3 & Review 1": [
+                            {q: "Translate to Vietnamese: musical instrument", a: "nhạc cụ"}, {q: "Translate to English: ban nhạc", a: "band"},
+                            {q: "Multiple choice: He let me _____ his guitar. (A. play / B. to play / C. playing / D. played)", a: "A"}, {q: "Fill in (<= 3 words): She has a beautiful v_____.", a: "voice"},
+                            {q: "True/False: 'Make somebody to do something' is correct. (True/False)", a: "False"}, {q: "Reorder: famous / is / a / He / pop / singer.", a: "He is a famous pop singer."},
+                            {q: "Multiple choice: They decided _____ to the concert. (A. go / B. going / C. to go / D. went)", a: "C"}, {q: "Translate to Vietnamese: talent show", a: "chương trình tìm kiếm tài năng"},
+                            {q: "Translate to English: ca sĩ hát chính", a: "lead singer"}, {q: "Fill in (<= 3 words): The audience clapped loudly after the p_____.", a: "performance"},
+                            {q: "True/False: We use 'and' to connect two contrasting ideas. (True/False)", a: "False"}, {q: "Reorder: music / listening / I / love / to.", a: "I love listening to music."},
+                            {q: "Multiple choice: He is a _____ judge. (A. fame / B. famous / C. famously / D. faming)", a: "B"}, {q: "Grammar: My parents forced me (learn) _____ the piano.", a: "to learn"},
+                            {q: "Translate to English: nhạc cụ truyền thống", a: "traditional musical instrument"}, {q: "Translate to Vietnamese: release an album", a: "phát hành một album"},
+                            {q: "True/False: A compound sentence has two or more independent clauses. (True/False)", a: "True"}, {q: "Reorder: heavily, / rained / It / we / so / stayed / home. / at", a: "It rained heavily, so we stayed at home."},
+                            {q: "Multiple choice: I wanted to watch TV, _____ my brother wanted to play games. (A. and / B. so / C. but / D. or)", a: "C"}, {q: "Fill in (<= 3 words): His new single is a big h___.", a: "hit"}
+                        ],
+                        "Unit 4": [
+                            {q: "Translate to Vietnamese: community service", a: "dịch vụ cộng đồng"}, {q: "Translate to English: vùng sâu vùng xa", a: "remote area"},
+                            {q: "Multiple choice: The work was very _____. (A. tire / B. tiring / C. tired / D. to tire)", a: "B"}, {q: "Fill in (<= 3 words): We need more v_____ to clean the park.", a: "volunteers"},
+                            {q: "True/False: Adjectives ending in -ed describe feelings. (True/False)", a: "True"}, {q: "Reorder: money / orphans. / We / for / donated", a: "We donated money for orphans."},
+                            {q: "Multiple choice: I was walking home when it _____ to rain. (A. start / B. starts / C. starting / D. started)", a: "D"}, {q: "Translate to Vietnamese: orphanage", a: "trại trẻ mồ côi"},
+                            {q: "Translate to English: quyên góp quần áo", a: "donate clothes"}, {q: "Fill in (<= 3 words): Helping others is a m_____ activity.", a: "meaningful"},
+                            {q: "True/False: The past continuous is used for a completed action in the past. (True/False)", a: "False"}, {q: "Reorder: English / teaching / I / am / in / interested / children.", a: "I am interested in teaching English children."},
+                            {q: "Multiple choice: She was _____ when she heard the news. (A. shock / B. shocked / C. shocking / D. shocks)", a: "B"}, {q: "Grammar: While I (sleep) _____, the phone rang.", a: "was sleeping"},
+                            {q: "Translate to English: người tàn tật", a: "disabled people"}, {q: "Translate to Vietnamese: life-saving", a: "cứu mạng"},
+                            {q: "True/False: 'Boring' is used to describe something that makes you bored. (True/False)", a: "True"}, {q: "Reorder: useful / Community / service / very / is.", a: "Community service is very useful."},
+                            {q: "Multiple choice: We volunteered _____ the local hospital. (A. at / B. on / C. with / D. about)", a: "A"}, {q: "Fill in (<= 3 words): We raised m_____ for the poor.", a: "money"}
+                        ],
+                        "Unit 5": [
+                            {q: "Translate to Vietnamese: invention", a: "phát minh"}, {q: "Translate to English: điện thoại thông minh", a: "smartphone"},
+                            {q: "Multiple choice: I use a laptop _____ my homework. (A. do / B. doing / C. to do / D. for do)", a: "C"}, {q: "Fill in (<= 3 words): A 3D p_____ can make solid objects.", a: "printer"},
+                            {q: "True/False: The present perfect tense uses 'have/has + V3/ed'. (True/False)", a: "True"}, {q: "Reorder: useful / is / very / The / Internet.", a: "The Internet is very useful."},
+                            {q: "Multiple choice: He _____ his keys. He can't get into the house. (A. lose / B. lost / C. has lost / D. is losing)", a: "C"}, {q: "Translate to Vietnamese: portable", a: "dễ mang theo"},
+                            {q: "Translate to English: trí tuệ nhân tạo", a: "artificial intelligence"}, {q: "Fill in (<= 3 words): This app is used f___ learning English.", a: "for"},
+                            {q: "True/False: We use 'since' with a period of time (e.g., since 3 years). (True/False)", a: "False"}, {q: "Reorder: ever / Have / you / visited / London?", a: "Have you ever visited London?"},
+                            {q: "Multiple choice: Edison _____ the light bulb. (A. invent / B. invented / C. has invented / D. invents)", a: "B"}, {q: "Grammar: We (know) _____ each other since 2010.", a: "have known"},
+                            {q: "Translate to English: tiện ích", a: "gadget"}, {q: "Translate to Vietnamese: bulky", a: "cồng kềnh"},
+                            {q: "True/False: 'Used for + V-ing' describes the purpose of an object. (True/False)", a: "True"}, {q: "Reorder: yet. / haven't / I / finished / homework / my", a: "I haven't finished my homework yet."},
+                            {q: "Multiple choice: The washing machine is useful _____ washing clothes. (A. in / B. to / C. for / D. at)", a: "C"}, {q: "Fill in (<= 3 words): Science and t_____ change our lives.", a: "technology"}
+                        ],
+                        "Unit 6": [
+                            {q: "Translate to Vietnamese: gender equality", a: "bình đẳng giới"}, {q: "Translate to English: cơ hội việc làm", a: "job opportunity"},
+                            {q: "Multiple choice: Women _____ be paid the same as men. (A. should / B. might / C. need / D. dare)", a: "A"}, {q: "Fill in (<= 3 words): Both men and women can be a s_____ (phẫu thuật viên).", a: "surgeon"},
+                            {q: "True/False: Discrimination means treating people equally. (True/False)", a: "False"}, {q: "Reorder: given / rights. / equal / Women / be / should", a: "Women should be given equal rights."},
+                            {q: "Multiple choice: More jobs _____ created for women next year. (A. will / B. will be / C. be / D. are)", a: "B"}, {q: "Translate to Vietnamese: eliminate", a: "loại bỏ"},
+                            {q: "Translate to English: bạo lực gia đình", a: "domestic violence"}, {q: "Fill in (<= 3 words): Gender d_____ must be stopped.", a: "discrimination"},
+                            {q: "True/False: The passive voice of modals is 'Modal + be + V3/ed'. (True/False)", a: "True"}, {q: "Reorder: can / Girls / math / well. / do", a: "Girls can do math well."},
+                            {q: "Multiple choice: This problem must _____ solved soon. (A. is / B. to be / C. be / D. been)", a: "C"}, {q: "Grammar: The classroom ought to (clean) _____ every day.", a: "be cleaned"},
+                            {q: "Translate to English: quyền bình đẳng", a: "equal rights"}, {q: "Translate to Vietnamese: male-dominated", a: "do nam giới thống trị"},
+                            {q: "True/False: 'Wage' is money you get for your work. (True/False)", a: "True"}, {q: "Reorder: get / married / shouldn't / They / early.", a: "They shouldn't get married early."},
+                            {q: "Multiple choice: Education can help _____ girls' lives. (A. improve / B. to improving / C. improved / D. improves)", a: "A"}, {q: "Fill in (<= 3 words): Men and women should have e____ opportunities.", a: "equal"}
+                        ],
+                        "Unit 7": [
+                            {q: "Translate to Vietnamese: international organisation", a: "tổ chức quốc tế"}, {q: "Translate to English: Liên Hợp Quốc", a: "United Nations"},
+                            {q: "Multiple choice: Viet Nam is a _____ of ASEAN. (A. member / B. friend / C. part / D. person)", a: "A"}, {q: "Fill in (<= 3 words): UNICEF aims to protect c_____.", a: "children"},
+                            {q: "True/False: WTO stands for World Trade Organisation. (True/False)", a: "True"}, {q: "Reorder: joined / Viet Nam / WTO / 2007. / in", a: "Viet Nam joined WTO in 2007."},
+                            {q: "Multiple choice: This is the _____ city in the country. (A. large / B. larger / C. largest / D. most large)", a: "C"}, {q: "Translate to Vietnamese: economic growth", a: "tăng trưởng kinh tế"},
+                            {q: "Translate to English: xoá đói giảm nghèo", a: "poverty reduction"}, {q: "Fill in (<= 3 words): WHO focuses on public h_____.", a: "health"},
+                            {q: "True/False: We use 'than' in superlative sentences. (True/False)", a: "False"}, {q: "Reorder: more / English / is / than / important / French.", a: "English is more important than French."},
+                            {q: "Multiple choice: She is _____ than her sister. (A. tall / B. taller / C. tallest / D. the taller)", a: "B"}, {q: "Grammar: It was the (good) _____ day of my life.", a: "best"},
+                            {q: "Translate to English: nhà đầu tư nước ngoài", a: "foreign investor"}, {q: "Translate to Vietnamese: commit", a: "cam kết"},
+                            {q: "True/False: Comparative compares two things. (True/False)", a: "True"}, {q: "Reorder: popular / Football / the / is / sport. / most", a: "Football is the most popular sport."},
+                            {q: "Multiple choice: Viet Nam aims to _____ its education system. (A. improve / B. decreases / C. limits / D. breaks)", a: "A"}, {q: "Fill in (<= 3 words): We promote p_____ and security.", a: "peace"}
+                        ],
+                        "Unit 8": [
+                            {q: "Translate to Vietnamese: blended learning", a: "học tập kết hợp"}, {q: "Translate to English: thiết bị kỹ thuật số", a: "digital device"},
+                            {q: "Multiple choice: The student _____ won the prize is my friend. (A. which / B. who / C. whom / D. whose)", a: "B"}, {q: "Fill in (<= 3 words): We can learn o_____ during the pandemic.", a: "online"},
+                            {q: "True/False: 'Which' is used for people in relative clauses. (True/False)", a: "False"}, {q: "Reorder: use / I / a / tablet / to / study.", a: "I use a tablet to study."},
+                            {q: "Multiple choice: The book _____ I borrowed is very interesting. (A. who / B. whom / C. which / D. whose)", a: "C"}, {q: "Translate to Vietnamese: face-to-face", a: "trực tiếp"},
+                            {q: "Translate to English: máy tính bảng", a: "tablet"}, {q: "Fill in (<= 3 words): Technology helps students b_____ learning.", a: "benefit"},
+                            {q: "True/False: 'Whose' is used to show possession. (True/False)", a: "True"}, {q: "Reorder: boy / The / is / who / standing / my / brother. / there / is", a: "The boy who is standing there is my brother."},
+                            {q: "Multiple choice: The teacher _____ car is outside is very strict. (A. who / B. whom / C. whose / D. which)", a: "C"}, {q: "Grammar: The school (where/which) _____ I study is big.", a: "where"},
+                            {q: "Translate to English: truy cập Internet", a: "access the Internet"}, {q: "Translate to Vietnamese: traditional classroom", a: "lớp học truyền thống"},
+                            {q: "True/False: You can use 'that' to replace 'who' in a defining relative clause. (True/False)", a: "True"}, {q: "Reorder: phone / My / has / a / screen. / big", a: "My phone has a big screen."},
+                            {q: "Multiple choice: E-learning is _____ popular nowadays. (A. get / B. getting / C. got / D. gets)", a: "B"}, {q: "Fill in (<= 3 words): Download the a___ to your smartphone.", a: "app"}
+                        ],
+                        "Unit 9": [
+                            {q: "Translate to Vietnamese: biodiversity", a: "đa dạng sinh học"}, {q: "Translate to English: biến đổi khí hậu", a: "climate change"},
+                            {q: "Multiple choice: He said he _____ to help the environment. (A. wants / B. wanted / C. wanting / D. will want)", a: "B"}, {q: "Fill in (<= 3 words): Many animals are in danger of e_____.", a: "extinction"},
+                            {q: "True/False: In reported speech, present simple changes to past simple. (True/False)", a: "True"}, {q: "Reorder: trees / We / to / plant / promised / more.", a: "We promised to plant more trees."},
+                            {q: "Multiple choice: She asked me _____ I liked animals. (A. that / B. if / C. do / D. did)", a: "B"}, {q: "Translate to Vietnamese: habitat", a: "môi trường sống"},
+                            {q: "Translate to English: động vật hoang dã", a: "wildlife"}, {q: "Fill in (<= 3 words): We need to r_____ global warming.", a: "reduce"},
+                            {q: "True/False: 'Will' changes to 'can' in reported speech. (True/False)", a: "False"}, {q: "Reorder: save / told / me / to / He / water.", a: "He told me to save water."},
+                            {q: "Multiple choice: The teacher told us _____ litter. (A. not / B. to not / C. not to / D. don't)", a: "C"}, {q: "Grammar: \"I am studying,\" she said. -> She said she (be) _____ studying.", a: "was"},
+                            {q: "Translate to English: phá rừng", a: "deforestation"}, {q: "Translate to Vietnamese: practical action", a: "hành động thiết thực"},
+                            {q: "True/False: We shift tenses back one step in reported speech. (True/False)", a: "True"}, {q: "Reorder: the / clean / Let's / up / beach.", a: "Let's clean up the beach."},
+                            {q: "Multiple choice: Protect the environment _____ it is too late. (A. after / B. before / C. when / D. while)", a: "B"}, {q: "Fill in (<= 3 words): Water p_____ kills fish.", a: "pollution"}
+                        ],
+                        "Unit 10": [
+                            {q: "Translate to Vietnamese: ecotourism", a: "du lịch sinh thái"}, {q: "Translate to English: bền vững", a: "sustainable"},
+                            {q: "Multiple choice: If it rains, we _____ stay at home. (A. would / B. will / C. are / D. do)", a: "B"}, {q: "Fill in (<= 3 words): Tourism brings economic b_____ to local people.", a: "benefits"},
+                            {q: "True/False: Conditional Type 1 is for unreal situations in the present. (True/False)", a: "False"}, {q: "Reorder: go / If / I / money, / will / I / have / travel.", a: "If I have money, I will go travel."},
+                            {q: "Multiple choice: If I _____ you, I would protect the forest. (A. am / B. was / C. were / D. be)", a: "C"}, {q: "Translate to Vietnamese: local culture", a: "văn hóa địa phương"},
+                            {q: "Translate to English: rạn san hô", a: "coral reef"}, {q: "Fill in (<= 3 words): Tourists should respect local c_____.", a: "culture"},
+                            {q: "True/False: Conditional Type 2 uses past simple in the 'if' clause. (True/False)", a: "True"}, {q: "Reorder: damage / Don't / the / environment.", a: "Don't damage the environment."},
+                            {q: "Multiple choice: Ecotourism has a low _____ on the environment. (A. impact / B. force / C. power / D. hit)", a: "A"}, {q: "Grammar: If she (study) _____ harder, she would pass the exam.", a: "studied"},
+                            {q: "Translate to English: đồ thủ công mỹ nghệ", a: "handicrafts"}, {q: "Translate to Vietnamese: mass tourism", a: "du lịch đại trà"},
+                            {q: "True/False: 'Unless' means 'if not'. (True/False)", a: "True"}, {q: "Reorder: nature / explore / to / We / love.", a: "We love to explore nature."},
+                            {q: "Multiple choice: You will fail the test _____ you study. (A. if / B. unless / C. when / D. because)", a: "B"}, {q: "Fill in (<= 3 words): Keep the beach c___.", a: "clean"}
+                        ]
                     },
                     11: {
-                        "Unit 1": [ {q: "Fill in: Eating a balanced d___ is good for your health.", a: "diet"}, {q: "Grammar: I (work) _____ here since 2010.", a: "have worked"}, {q: "Multiple choice: She _____ to the gym yesterday. (A. goes / B. went / C. has gone)", a: "went"}, {q: "Reorder: exercise / regular / You / do / should.", a: "You should do regular exercise."}, {q: "Fill in: Fast food can increase the risk of heart d_____.", a: "disease"} ],
-                        "Unit 2": [ {q: "Fill in: The g_____ gap causes misunderstandings between parents and children.", a: "generation"}, {q: "Multiple choice: We live in a _____ family with only parents and children. (A. nuclear / B. extended)", a: "nuclear"}, {q: "Grammar: You _____ wear a uniform at this school. It's a rule. (must/should)", a: "must"}, {q: "Fill in: My parents don't let me s___ up late.", a: "stay"}, {q: "Reorder: footsteps / want / to / my / follow / I / parents' / in.", a: "I want to follow in my parents' footsteps."}, {q: "Find error: You ought go to bed early.", a: "go"}, {q: "Multiple choice: My grandad is quite _____. He doesn't like modern ideas. (A. open-minded / B. conservative)", a: "conservative"}, {q: "Fill in: There is often c_____ between teenagers and their parents.", a: "conflict"}, {q: "Grammar: You _____ disrespect your elders. (mustn't/don't have to)", a: "mustn't"}, {q: "Translate to English: Quan điểm khác nhau.", a: "different viewpoints"}, {q: "Reorder: table / We / to / follow / manners / have.", a: "We have to follow table manners."}, {q: "Multiple choice: She always _____ rules strictly. (A. obeys / B. breaks / C. forces)", a: "obeys"}, {q: "Fill in: State-o_____ companies are managed by the government.", a: "owned"}, {q: "Find error: You don't must cheat in the exam.", a: "don't must"}, {q: "Grammar: I think you _____ talk to him about the problem. (ought to/have to)", a: "ought to"}, {q: "Fill in: Parents shouldn't invade their children's p_____.", a: "privacy"}, {q: "Multiple choice: They try to bridge the generation _____. (A. hole / B. gap / C. space)", a: "gap"}, {q: "Reorder: me / parents / My / study / force / hard / to.", a: "My parents force me to study hard."}, {q: "Fill in: He is very o___-minded and accepts new changes easily.", a: "open"}, {q: "Grammar: You _____ wash the dishes, I already did it. (mustn't/don't have to)", a: "don't have to"} ],
-                        "Unit 3 & Review 1": [ {q: "Fill in: S_____ cities use AI to manage traffic.", a: "Smart"}, {q: "Grammar: The soup (taste) _____ delicious.", a: "tastes"}, {q: "Multiple choice: The city _____ (A. looks / B. is looking) beautiful tonight.", a: "looks"}, {q: "Reorder: infrastructure / Modern / is / important / very.", a: "Modern infrastructure is very important."}, {q: "Fill in: High-r___ buildings are everywhere in the city center.", a: "rise"} ],
-                        "Unit 4": [ {q: "Fill in: ASEAN stands for the A_____ of Southeast Asian Nations.", a: "Association"}, {q: "Grammar: He apologized for (arrive) _____ late.", a: "arriving"}, {q: "Multiple choice: Vietnam joined ASEAN _____ 1995. (A. in / B. on / C. at)", a: "in"}, {q: "Reorder: promote / We / cultural / exchange.", a: "We should promote cultural exchange."}, {q: "Fill in: The program helps develop l_____ skills for youth.", a: "leadership"} ]
+                        "Unit 1": [
+                            {q: "Translate to Vietnamese: life expectancy", a: "tuổi thọ"}, {q: "Translate to English: chế độ ăn cân bằng", a: "balanced diet"},
+                            {q: "Multiple choice: You should _____ regularly to stay healthy. (A. work out / B. work off / C. work in / D. work up)", a: "A"}, {q: "Fill in (<= 3 words): Doing yoga helps relieve s_____.", a: "stress"},
+                            {q: "True/False: Eating too much fast food is good for your health. (True/False)", a: "False"}, {q: "Reorder: regular / You / do / exercise / should.", a: "You should do regular exercise."},
+                            {q: "Multiple choice: I _____ here since 2015. (A. live / B. lived / C. have lived / D. am living)", a: "C"}, {q: "Translate to Vietnamese: immune system", a: "hệ miễn dịch"},
+                            {q: "Translate to English: tập thể dục (2 words)", a: "do exercise"}, {q: "Fill in (<= 3 words): Lack of sleep can cause health p_____.", a: "problems"},
+                            {q: "True/False: The past simple is used for an action that started in the past and continues to the present. (True/False)", a: "False"}, {q: "Reorder: eating / junk / Stop / food.", a: "Stop eating junk food."},
+                            {q: "Multiple choice: She _____ to the gym yesterday. (A. goes / B. went / C. has gone / D. is going)", a: "B"}, {q: "Grammar: We (not see) _____ him recently.", a: "have not seen"},
+                            {q: "Translate to English: chất dinh dưỡng", a: "nutrient"}, {q: "Translate to Vietnamese: infectious disease", a: "bệnh truyền nhiễm"},
+                            {q: "True/False: 'I have eaten breakfast' is a Present Perfect sentence. (True/False)", a: "True"}, {q: "Reorder: vitamins / provide / Vegetables / essential.", a: "Vegetables provide essential vitamins."},
+                            {q: "Multiple choice: He suffers _____ high blood pressure. (A. of / B. from / C. with / D. in)", a: "B"}, {q: "Fill in (<= 3 words): Drink plenty of w_____. It's good for you.", a: "water"}
+                        ],
+                        "Unit 2": [
+                            {q: "Translate to Vietnamese: generation gap", a: "khoảng cách thế hệ"}, {q: "Translate to English: gia đình hạt nhân", a: "nuclear family"},
+                            {q: "Multiple choice: You _____ respect your grandparents. (A. must / B. mustn't / C. shouldn't / D. don't have to)", a: "A"}, {q: "Fill in (<= 3 words): We shouldn't break the family r_____.", a: "rules"},
+                            {q: "True/False: 'Have to' expresses an external obligation or rule. (True/False)", a: "True"}, {q: "Reorder: parents / obey / Children / should / their.", a: "Children should obey their parents."},
+                            {q: "Multiple choice: My dad is very _____. He dislikes changes. (A. open-minded / B. conservative / C. modern / D. easygoing)", a: "B"}, {q: "Translate to Vietnamese: table manners", a: "phép tắc ăn uống"},
+                            {q: "Translate to English: gia đình đa thế hệ", a: "extended family"}, {q: "Fill in (<= 3 words): Parents shouldn't force children to follow in their f_____.", a: "footsteps"},
+                            {q: "True/False: 'You mustn't use your phone' means you are allowed to use it. (True/False)", a: "False"}, {q: "Reorder: bridge / try / gap / to / We / the.", a: "We try to bridge the gap."},
+                            {q: "Multiple choice: You _____ wear a uniform on Mondays. It's the school rule. (A. must / B. have to / C. ought to / D. should)", a: "B"}, {q: "Grammar: You (not have to) _____ wash the car. I already did it.", a: "don't have to"},
+                            {q: "Translate to English: xung đột", a: "conflict"}, {q: "Translate to Vietnamese: open-minded", a: "cởi mở"},
+                            {q: "True/False: 'Ought to' has a similar meaning to 'Should'. (True/False)", a: "True"}, {q: "Reorder: room / your / clean / You / must.", a: "You must clean your room."},
+                            {q: "Multiple choice: Teenagers need their own _____. (A. privacy / B. private / C. privately / D. privates)", a: "A"}, {q: "Fill in (<= 3 words): Don't argue w___ your parents.", a: "with"}
+                        ],
+                        "Unit 3 & Review 1": [
+                            {q: "Translate to Vietnamese: smart city", a: "thành phố thông minh"}, {q: "Translate to English: cơ sở hạ tầng", a: "infrastructure"},
+                            {q: "Multiple choice: The cake _____ delicious. (A. taste / B. tastes / C. tasting / D. to taste)", a: "B"}, {q: "Fill in (<= 3 words): We need more high-r___ buildings.", a: "rise"},
+                            {q: "True/False: 'Seem' is a linking verb. (True/False)", a: "True"}, {q: "Reorder: fast. / is / The / city / growing", a: "The city is growing fast."},
+                            {q: "Multiple choice: She looks _____ today. (A. beauty / B. beautiful / C. beautifully / D. beautify)", a: "B"}, {q: "Translate to Vietnamese: sustainable", a: "bền vững"},
+                            {q: "Translate to English: cư dân", a: "resident"}, {q: "Fill in (<= 3 words): Quality of l___ is improving.", a: "life"},
+                            {q: "True/False: We use adverbs after linking verbs like 'become' or 'feel'. (True/False)", a: "False"}, {q: "Reorder: better. / getting / Traffic / is", a: "Traffic is getting better."},
+                            {q: "Multiple choice: The weather _____ cold yesterday. (A. turn / B. turns / C. turned / D. is turning)", a: "C"}, {q: "Grammar: The flowers (smell) _____ sweet.", a: "smell"},
+                            {q: "Translate to English: giao thông công cộng", a: "public transport"}, {q: "Translate to Vietnamese: urban planner", a: "nhà quy hoạch đô thị"},
+                            {q: "True/False: 'Look' can be both an action verb and a linking verb. (True/False)", a: "True"}, {q: "Reorder: sound / ideas / interesting. / Your", a: "Your ideas sound interesting."},
+                            {q: "Multiple choice: Sensors help manage the city's _____ network. (A. transport / B. transports / C. transporting / D. transported)", a: "A"}, {q: "Fill in (<= 3 words): AI stands for artificial i_____.", a: "intelligence"}
+                        ],
+                        "Unit 4": [
+                            {q: "Translate to Vietnamese: leadership", a: "khả năng lãnh đạo"}, {q: "Translate to English: đóng góp", a: "contribution"},
+                            {q: "Multiple choice: He apologized for _____ late. (A. arrive / B. to arrive / C. arriving / D. arrived)", a: "C"}, {q: "Fill in (<= 3 words): ASEAN aims to promote p_____.", a: "peace"},
+                            {q: "True/False: Gerunds act like nouns in a sentence. (True/False)", a: "True"}, {q: "Reorder: proud / I / am / of / a / member. / being", a: "I am proud of being a member."},
+                            {q: "Multiple choice: She is interested in _____ English. (A. learn / B. learning / C. to learn / D. learned)", a: "B"}, {q: "Translate to Vietnamese: cultural exchange", a: "giao lưu văn hóa"},
+                            {q: "Translate to English: học bổng", a: "scholarship"}, {q: "Fill in (<= 3 words): We should respect differences in c_____.", a: "culture"},
+                            {q: "True/False: We use a gerund after prepositions (in, of, for...). (True/False)", a: "True"}, {q: "Reorder: joined / Viet Nam / ASEAN / in / 1995.", a: "Viet Nam joined ASEAN in 1995."},
+                            {q: "Multiple choice: Thank you for _____ me. (A. help / B. helps / C. to help / D. helping)", a: "D"}, {q: "Grammar: He succeeded in (pass) _____ the exam.", a: "passing"},
+                            {q: "Translate to English: nền kinh tế", a: "economy"}, {q: "Translate to Vietnamese: solidarity", a: "tình đoàn kết"},
+                            {q: "True/False: 'Look forward to' is followed by a base verb. (True/False)", a: "False"}, {q: "Reorder: joining / Are / the / club? / you / considering", a: "Are you considering joining the club?"},
+                            {q: "Multiple choice: Viet Nam has made a great _____ to ASEAN. (A. contribute / B. contribution / C. contributing / D. contributed)", a: "B"}, {q: "Fill in (<= 3 words): Youth p_____ are very helpful.", a: "programs"}
+                        ],
+                        "Unit 5": [
+                            {q: "Translate to Vietnamese: global warming", a: "nóng lên toàn cầu"}, {q: "Translate to English: khí thải", a: "emission"},
+                            {q: "Multiple choice: _____ his homework, he went to bed. (A. Have finished / B. Having finished / C. Finished / D. Finish)", a: "B"}, {q: "Fill in (<= 3 words): Cutting down trees causes d_____.", a: "deforestation"},
+                            {q: "True/False: Perfect participles show an action happened before another action. (True/False)", a: "True"}, {q: "Reorder: trees. / stopped / We / cutting / down", a: "We stopped cutting down trees."},
+                            {q: "Multiple choice: _____ all the food, they left the restaurant. (A. Eaten / B. Eating / C. Having eaten / D. Eat)", a: "C"}, {q: "Translate to Vietnamese: consequence", a: "hậu quả"},
+                            {q: "Translate to English: nhiên liệu hóa thạch", a: "fossil fuel"}, {q: "Fill in (<= 3 words): Stop wasting w_____ at home.", a: "water"},
+                            {q: "True/False: Perfect participle takes the form 'Having + V3/ed'. (True/False)", a: "True"}, {q: "Reorder: warming / Global / ice / to / causes / melt.", a: "Global warming causes ice to melt."},
+                            {q: "Multiple choice: Coal is a type of _____ fuel. (A. fossil / B. green / C. eco / D. solar)", a: "A"}, {q: "Grammar: (Have) _____ completed the test, she left early.", a: "Having"},
+                            {q: "Translate to English: hiệu ứng nhà kính", a: "greenhouse effect"}, {q: "Translate to Vietnamese: absorb", a: "hấp thụ"},
+                            {q: "True/False: 'Having done' can replace 'Because he had done'. (True/False)", a: "True"}, {q: "Reorder: levels / Sea / rising. / are", a: "Sea levels are rising."},
+                            {q: "Multiple choice: Trees absorb carbon dioxide and release _____. (A. water / B. oxygen / C. smoke / D. gas)", a: "B"}, {q: "Fill in (<= 3 words): Reduce your carbon f_____.", a: "footprint"}
+                        ],
+                        "Unit 6": [
+                            {q: "Translate to Vietnamese: heritage", a: "di sản"}, {q: "Translate to English: khôi phục", a: "restore"},
+                            {q: "Multiple choice: He was the last person _____ the room. (A. leave / B. leaving / C. to leave / D. left)", a: "C"}, {q: "Fill in (<= 3 words): Ha Long Bay is a World Heritage S_____.", a: "Site"},
+                            {q: "True/False: To-infinitive can replace a relative clause after 'the first/last/only'. (True/False)", a: "True"}, {q: "Reorder: protect / We / must / old / buildings.", a: "We must protect old buildings."},
+                            {q: "Multiple choice: The Taj Mahal is a famous _____. (A. monument / B. mountain / C. river / D. beach)", a: "A"}, {q: "Translate to Vietnamese: preserve", a: "bảo tồn"},
+                            {q: "Translate to English: khảo cổ học", a: "archaeology"}, {q: "Fill in (<= 3 words): Don't damage historical r_____.", a: "relics"},
+                            {q: "True/False: 'The first to arrive' means 'The first person who arrived'. (True/False)", a: "True"}, {q: "Reorder: to / It / is / the / best / place / visit.", a: "It is the best place to visit."},
+                            {q: "Multiple choice: She was the only student _____ the answer. (A. know / B. knowing / C. to know / D. known)", a: "C"}, {q: "Grammar: Neil Armstrong was the first man (walk) _____ on the moon.", a: "to walk"},
+                            {q: "Translate to English: phong cảnh", a: "landscape"}, {q: "Translate to Vietnamese: complex", a: "quần thể"},
+                            {q: "True/False: We use to-infinitives to shorten sentences. (True/False)", a: "True"}, {q: "Reorder: proud / I / am / of / heritage. / our", a: "I am proud of our heritage."},
+                            {q: "Multiple choice: Hue is famous for its _____ monuments. (A. historic / B. history / C. historically / D. historian)", a: "A"}, {q: "Fill in (<= 3 words): Tourism helps boost the local e_____.", a: "economy"}
+                        ],
+                        "Unit 7": [
+                            {q: "Translate to Vietnamese: higher education", a: "giáo dục đại học"}, {q: "Translate to English: học nghề", a: "vocational training"},
+                            {q: "Multiple choice: He denied _____ the money. (A. steal / B. to steal / C. having stolen / D. stole)", a: "C"}, {q: "Fill in (<= 3 words): After high school, you can go to u_____.", a: "university"},
+                            {q: "True/False: Perfect gerunds show a past action. (True/False)", a: "True"}, {q: "Reorder: mechanic. / He / trained / to / be / a", a: "He trained to be a mechanic."},
+                            {q: "Multiple choice: She admitted _____ a mistake. (A. make / B. having made / C. to make / D. makes)", a: "B"}, {q: "Translate to Vietnamese: qualification", a: "bằng cấp"},
+                            {q: "Translate to English: kĩ năng thực hành", a: "practical skill"}, {q: "Fill in (<= 3 words): You need good q_____ to get this job.", a: "qualifications"},
+                            {q: "True/False: 'Deny + having V3/ed' is grammatically correct. (True/False)", a: "True"}, {q: "Reorder: hard / I / pass / the / exam. / to / studied", a: "I studied hard to pass the exam."},
+                            {q: "Multiple choice: Vocational schools focus on _____ skills. (A. practice / B. practical / C. practically / D. practiced)", a: "B"}, {q: "Grammar: He recalled (have) _____ seen her before.", a: "having"},
+                            {q: "Translate to English: tốt nghiệp", a: "graduate"}, {q: "Translate to Vietnamese: school-leaver", a: "người vừa học xong phổ thông"},
+                            {q: "True/False: A bachelor's degree is higher education. (True/False)", a: "True"}, {q: "Reorder: many / There / are / options / for / you.", a: "There are many options for you."},
+                            {q: "Multiple choice: He is looking for an _____ in IT. (A. apprenticeship / B. apprentice / C. apprentices / D. apprenticing)", a: "A"}, {q: "Fill in (<= 3 words): Try to gain more e_____ at work.", a: "experience"}
+                        ],
+                        "Unit 8": [
+                            {q: "Translate to Vietnamese: time management", a: "quản lý thời gian"}, {q: "Translate to English: tự lập", a: "independent"},
+                            {q: "Multiple choice: It was my brother _____ broke the vase. (A. which / B. who / C. whom / D. whose)", a: "B"}, {q: "Fill in (<= 3 words): He is very s___-reliant.", a: "self"},
+                            {q: "True/False: Cleft sentences start with 'It is/was'. (True/False)", a: "True"}, {q: "Reorder: own. / on / learn / to / live / my / I", a: "I learn to live on my own."},
+                            {q: "Multiple choice: It was in 2010 _____ they met. (A. when / B. which / C. that / D. who)", a: "C"}, {q: "Translate to Vietnamese: responsible", a: "có trách nhiệm"},
+                            {q: "Translate to English: kĩ năng sống", a: "life skill"}, {q: "Fill in (<= 3 words): Make a schedule to manage your t_____.", a: "time"},
+                            {q: "True/False: We use cleft sentences to emphasize a specific part of a sentence. (True/False)", a: "True"}, {q: "Reorder: decision. / make / my / own / I / can", a: "I can make my own decision."},
+                            {q: "Multiple choice: _____ was John who helped me. (A. He / B. This / C. It / D. That)", a: "C"}, {q: "Grammar: It was the dog (that/who) _____ chased the cat.", a: "that"},
+                            {q: "Translate to English: sự tự tin", a: "confidence"}, {q: "Translate to Vietnamese: overcome", a: "vượt qua"},
+                            {q: "True/False: Being independent means you never ask for help. (True/False)", a: "False"}, {q: "Reorder: yourself. / You / believe / should / in", a: "You should believe in yourself."},
+                            {q: "Multiple choice: Parents should teach children to be _____. (A. rely / B. reliable / C. reliance / D. reliant)", a: "B"}, {q: "Fill in (<= 3 words): Set a g___ and try to achieve it.", a: "goal"}
+                        ],
+                        "Unit 9": [
+                            {q: "Translate to Vietnamese: overpopulation", a: "bùng nổ dân số"}, {q: "Translate to English: áp lực đồng trang lứa", a: "peer pressure"},
+                            {q: "Multiple choice: It was raining heavily; _____, we stayed at home. (A. however / B. therefore / C. moreover / D. but)", a: "B"}, {q: "Fill in (<= 3 words): Cyberb_____ is a big problem online.", a: "bullying"},
+                            {q: "True/False: 'However' is used to add more information. (True/False)", a: "False"}, {q: "Reorder: issues. / Discuss / social / with / parents / your", a: "Discuss social issues with your parents."},
+                            {q: "Multiple choice: She is very smart. _____, she is kind. (A. Furthermore / B. However / C. Therefore / D. So)", a: "A"}, {q: "Translate to Vietnamese: poverty", a: "sự nghèo đói"},
+                            {q: "Translate to English: chiến dịch", a: "campaign"}, {q: "Fill in (<= 3 words): Stop b_____ your classmates.", a: "bullying"},
+                            {q: "True/False: 'Therefore' is a linking word showing a result. (True/False)", a: "True"}, {q: "Reorder: rules. / strict / schools / have / Many", a: "Many schools have strict rules."},
+                            {q: "Multiple choice: He didn't study hard; _____, he failed. (A. moreover / B. consequently / C. however / D. yet)", a: "B"}, {q: "Grammar: She likes cats. (However/So) _____, she dislikes dogs.", a: "However"},
+                            {q: "Translate to English: lo âu", a: "anxiety"}, {q: "Translate to Vietnamese: depression", a: "bệnh trầm cảm"},
+                            {q: "True/False: Linking words connect ideas logically. (True/False)", a: "True"}, {q: "Reorder: healthy / Keep / a / lifestyle.", a: "Keep a healthy lifestyle."},
+                            {q: "Multiple choice: Lack of sleep leads to _____. (A. focus / B. energy / C. tiredness / D. active)", a: "C"}, {q: "Fill in (<= 3 words): Talk to a t_____ adult if you need help.", a: "trusted"}
+                        ],
+                        "Unit 10": [
+                            {q: "Translate to Vietnamese: ecosystem", a: "hệ sinh thái"}, {q: "Translate to English: đa dạng sinh học", a: "biodiversity"},
+                            {q: "Multiple choice: We should protect our national _____. (A. park / B. street / C. house / D. market)", a: "A"}, {q: "Fill in (<= 3 words): Flora and f_____ mean plants and animals.", a: "fauna"},
+                            {q: "True/False: A compound noun is formed by combining two or more words. (True/False)", a: "True"}, {q: "Reorder: habitats. / Destroying / dangerous / is / natural", a: "Destroying natural habitats is dangerous."},
+                            {q: "Multiple choice: The _____ is full of beautiful birds. (A. rain forest / B. rain / C. forest / D. tree)", a: "A"}, {q: "Translate to Vietnamese: conservation", a: "sự bảo tồn"},
+                            {q: "Translate to English: tuyệt chủng", a: "extinct"}, {q: "Fill in (<= 3 words): Plastic pollution harms sea t_____.", a: "turtles"},
+                            {q: "True/False: 'Greenhouse' is a compound noun. (True/False)", a: "True"}, {q: "Reorder: balance / We / must / ecological / maintain / the.", a: "We must maintain the ecological balance."},
+                            {q: "Multiple choice: Many species are losing their _____. (A. houses / B. habitats / C. rooms / D. streets)", a: "B"}, {q: "Grammar: Compound noun for a light powered by the sun: solar _____.", a: "light"},
+                            {q: "Translate to English: công viên quốc gia", a: "national park"}, {q: "Translate to Vietnamese: illegal hunting", a: "săn bắn trái phép"},
+                            {q: "True/False: All compound nouns are written as one single word. (True/False)", a: "False"}, {q: "Reorder: Earth. / save / our / planet / Let's", a: "Let's save our planet Earth."},
+                            {q: "Multiple choice: Stopping deforestation is a way of _____. (A. destruction / B. conservation / C. pollution / D. hunting)", a: "B"}, {q: "Fill in (<= 3 words): Keep wild animals safe in n_____.", a: "nature"}
+                        ]
                     }
                 });
 
@@ -751,8 +985,15 @@
 
                 const suggestedQuestions = computed(() => {
                     if (!currentGrade.value || !currentUnitStr.value) return [];
-                    if (dbQuestions[currentGrade.value] && dbQuestions[currentGrade.value][currentUnitStr.value]) return dbQuestions[currentGrade.value][currentUnitStr.value];
-                    return [ {q: `Fill in: This is a sample question for ${currentUnitStr.value}. (answer: sample)`, a: "sample"} ];
+                    let unitKey = currentUnitStr.value;
+                    // Xử lý các tuần Review fallback về Unit gần nhất hoặc Review
+                    if (!dbQuestions[currentGrade.value][unitKey]) {
+                        if (unitKey.includes("Review Term 1")) unitKey = "Unit 5";
+                        else if (unitKey.includes("Review 3")) unitKey = "Unit 8";
+                        else if (unitKey.includes("Review Term 2")) unitKey = "Unit 10";
+                        else unitKey = "Unit 1"; 
+                    }
+                    return dbQuestions[currentGrade.value][unitKey] || [];
                 });
 
                 const selectSuggestedQuestion = (item) => {
@@ -774,22 +1015,51 @@
                     isRefreshingQuestions.value = true;
                     setTimeout(() => {
                         const grade = currentGrade.value;
-                        const unit = currentUnitStr.value;
-                        const mockAiGenerations = [
-                            {q: `They are discussing the _____ problems of the city. (A. environment / B. environmental)`, a: "environmental"},
-                            {q: `Fill in: We need to p______ the forests from being destroyed.`, a: "protect"},
-                            {q: `Reorder: should / We / recycle / paper / everyday.`, a: "We should recycle paper everyday."},
-                            {q: `The teacher _____ (explain) the lesson right now.`, a: "is explaining"}
-                        ];
-                        const randomQuestion = mockAiGenerations[Math.floor(Math.random() * mockAiGenerations.length)];
-                        if(!dbQuestions[grade][unit]) dbQuestions[grade][unit] = [];
-                        dbQuestions[grade][unit].unshift(randomQuestion);
+                        let unitKey = currentUnitStr.value;
+                        if (!dbQuestions[grade][unitKey]) unitKey = "Unit 1"; // Fallback an toàn
+                        
+                        // Ngân hàng AI giả lập (Khác biệt hoàn toàn với dbQuestions, bổ trợ từ vựng, ngữ pháp)
+                        const mockAiGenerations = {
+                            10: {
+                                "Unit 1": [{q: "Translate to Vietnamese: groceries", a: "tạp hóa"}, {q: "Reorder: my / I / love / family.", a: "I love my family."}, {q: "True/False: We use Present Continuous for habits. (True/False)", a: "False"}, {q: "Multiple choice: He _____ the floor right now. (A. sweeps / B. is sweeping / C. sweep)", a: "B"}],
+                                "Unit 2": [{q: "Translate to Vietnamese: litter", a: "rác vụn"}, {q: "Translate to English: ô nhiễm không khí", a: "air pollution"}, {q: "Reorder: plant / more / trees / Let's.", a: "Let's plant more trees."}, {q: "Multiple choice: Avoid _____ water. (A. wasting / B. waste / C. wastes)", a: "A"}],
+                                "Unit 3 & Review 1": [{q: "Translate to Vietnamese: rhythm", a: "nhịp điệu"}, {q: "Multiple choice: She forced him _____ the song. (A. practice / B. to practice / C. practicing)", a: "B"}, {q: "True/False: 'But' connects similar ideas. (True/False)", a: "False"}, {q: "Reorder: piano. / play / I / the / can", a: "I can play the piano."}],
+                                "Unit 4": [{q: "Translate to English: tình nguyện viên", a: "volunteer"}, {q: "Multiple choice: It is an _____ book. (A. interest / B. interesting / C. interested)", a: "B"}, {q: "Reorder: charity. / donated / I / to", a: "I donated to charity."}, {q: "True/False: Past Continuous uses was/were + V-ing. (True/False)", a: "True"}],
+                                "Unit 5": [{q: "Translate to Vietnamese: application", a: "ứng dụng"}, {q: "Translate to English: kết nối", a: "connect"}, {q: "True/False: 'Since' is used with a point of time. (True/False)", a: "True"}, {q: "Multiple choice: The PC is used _____ games. (A. to play / B. for playing / C. play)", a: "B"}],
+                                "Unit 6": [{q: "Translate to Vietnamese: surgeon", a: "bác sĩ phẫu thuật"}, {q: "True/False: Gender gap means equality. (True/False)", a: "False"}, {q: "Reorder: women. / Respect / all", a: "Respect all women."}, {q: "Multiple choice: Rules must _____ followed. (A. be / B. is / C. are)", a: "A"}],
+                                "Unit 7": [{q: "Translate to English: thị trường toàn cầu", a: "global market"}, {q: "True/False: UNICEF helps children. (True/False)", a: "True"}, {q: "Reorder: is / best / the / This / choice.", a: "This is the best choice."}, {q: "Multiple choice: Tokyo is _____ than Hanoi. (A. expensive / B. more expensive / C. most expensive)", a: "B"}],
+                                "Unit 8": [{q: "Translate to Vietnamese: access", a: "truy cập"}, {q: "True/False: 'Who' replaces things. (True/False)", a: "False"}, {q: "Reorder: a / is / This / smartboard.", a: "This is a smartboard."}, {q: "Multiple choice: The man _____ teaches me is nice. (A. who / B. which / C. whom)", a: "A"}],
+                                "Unit 9": [{q: "Translate to English: tái chế", a: "recycle"}, {q: "True/False: Reported speech keeps the exact same tense. (True/False)", a: "False"}, {q: "Reorder: save / our / Help / Earth.", a: "Help save our Earth."}, {q: "Multiple choice: He said he _____ happy. (A. is / B. was / C. be)", a: "B"}],
+                                "Unit 10": [{q: "Translate to Vietnamese: impact", a: "tác động"}, {q: "True/False: Type 1 conditional uses 'will'. (True/False)", a: "True"}, {q: "Reorder: pick / up / the / Please / trash.", a: "Please pick up the trash."}, {q: "Multiple choice: If I had a map, I _____ find it. (A. will / B. would / C. can)", a: "B"}]
+                            },
+                            11: {
+                                "Unit 1": [{q: "Translate to Vietnamese: treatment", a: "sự điều trị"}, {q: "Reorder: sugar / Avoid / too / much.", a: "Avoid too much sugar."}, {q: "True/False: We use Past Simple for a completed past action. (True/False)", a: "True"}, {q: "Multiple choice: They _____ a new hospital last year. (A. build / B. built / C. have built)", a: "B"}],
+                                "Unit 2": [{q: "Translate to Vietnamese: independent", a: "độc lập"}, {q: "Translate to English: quan điểm", a: "viewpoint"}, {q: "Reorder: late / stay / up / Don't.", a: "Don't stay up late."}, {q: "Multiple choice: You _____ smoke here. It's forbidden. (A. don't have to / B. mustn't / C. shouldn't)", a: "B"}],
+                                "Unit 3 & Review 1": [{q: "Translate to Vietnamese: public transport", a: "giao thông công cộng"}, {q: "True/False: 'Feel' can be a linking verb. (True/False)", a: "True"}, {q: "Reorder: smells / The / food / good.", a: "The food smells good."}, {q: "Multiple choice: She _____ happy. (A. seems / B. seemingly / C. seem)", a: "A"}],
+                                "Unit 4": [{q: "Translate to English: tình nguyện", a: "volunteer"}, {q: "True/False: 'Looking forward to' takes a V-ing. (True/False)", a: "True"}, {q: "Reorder: proud / I / am / you. / of", a: "I am proud of you."}, {q: "Multiple choice: He admitted _____ the window. (A. break / B. to break / C. breaking)", a: "C"}],
+                                "Unit 5": [{q: "Translate to Vietnamese: temperature", a: "nhiệt độ"}, {q: "True/False: Having + V3/ed acts as a perfect participle. (True/False)", a: "True"}, {q: "Reorder: stop / global / Help / warming.", a: "Help stop global warming."}, {q: "Multiple choice: _____ finished work, he went home. (A. Having / B. Has / C. Have)", a: "A"}],
+                                "Unit 6": [{q: "Translate to English: khảo cổ học", a: "archaeology"}, {q: "True/False: To-inf replaces relative clauses with 'the first'. (True/False)", a: "True"}, {q: "Reorder: heritage. / Protect / our / world", a: "Protect our world heritage."}, {q: "Multiple choice: He was the last person _____ arrive. (A. to / B. for / C. in)", a: "A"}],
+                                "Unit 7": [{q: "Translate to Vietnamese: apprenticeship", a: "thời gian học nghề"}, {q: "True/False: 'Deny' takes a to-infinitive. (True/False)", a: "False"}, {q: "Reorder: to / go / I / college.", a: "I go to college."}, {q: "Multiple choice: He apologized for _____ late. (A. being / B. to be / C. be)", a: "A"}],
+                                "Unit 8": [{q: "Translate to English: kỹ năng mềm", a: "soft skill"}, {q: "True/False: Cleft sentences start with 'It is'. (True/False)", a: "True"}, {q: "Reorder: my / It / was / dad.", a: "It was my dad."}, {q: "Multiple choice: It was Mary _____ called me. (A. which / B. who / C. whom)", a: "B"}],
+                                "Unit 9": [{q: "Translate to Vietnamese: physical health", a: "sức khỏe thể chất"}, {q: "True/False: 'Moreover' shows contrast. (True/False)", a: "False"}, {q: "Reorder: stressed. / I / am / very", a: "I am very stressed."}, {q: "Multiple choice: It rained; _____, we stayed in. (A. however / B. therefore / C. but)", a: "B"}],
+                                "Unit 10": [{q: "Translate to English: phá rừng", a: "deforestation"}, {q: "True/False: Toothpaste is a compound noun. (True/False)", a: "True"}, {q: "Reorder: save / the / We / must / forest.", a: "We must save the forest."}, {q: "Multiple choice: Many animals lost their _____. (A. habitats / B. rooms / C. cars)", a: "A"}]
+                            }
+                        };
+
+                        const aiPool = mockAiGenerations[grade][unitKey] || [{q: "Translate to Vietnamese: hello", a: "xin chào"}];
+                        const randomQuestion = aiPool[Math.floor(Math.random() * aiPool.length)];
+                        
+                        if(!dbQuestions[grade][unitKey]) dbQuestions[grade][unitKey] = [];
+                        dbQuestions[grade][unitKey].unshift(randomQuestion);
+                        
                         showToast("Đã tự động tạo thêm câu hỏi mới!");
                         isRefreshingQuestions.value = false;
                     }, 1500);
                 };
-
                 // =========================================================================
+                // KẾT THÚC: NGÂN HÀNG CÂU HỎI
+                // =========================================================================
+
                 // HỆ THỐNG ĐA LUỒNG KẾT NỐI (CLOUD WSS MQTT + PEERJS P2P)
                 // Giải quyết triệt để lỗi kết nối trên iPhone, Zalo, Safari, Samsung và 4G
                 // =========================================================================
